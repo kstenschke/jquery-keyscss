@@ -1,9 +1,9 @@
 {
 	"name": "keyscss",
-	"title": "Finds texts representing keyboard key names and applies a CSS styling to make the look like image of keys.",
+	"title": "keys.css",
 	"description": "jQuery plugin that finds texts representing keyboard key names and applies a CSS styling to make them look like images of keys.",
 	"keywords": [ "keyboard", "key", "keys.css", "hotkey", "shortcut" ],
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": {
 		"name": "Kay Stenschke",
 		"url": "https://github.com/kstenschke/jquery-keyscss/"
