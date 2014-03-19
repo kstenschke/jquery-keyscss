@@ -53,6 +53,8 @@ Author
 
 Version History
 ---------------
+* **0.0.2** *2014-03-19*
+    - Minor Cleanups
 * **0.0.1** *2014-03-19*
     - Initial release
 
