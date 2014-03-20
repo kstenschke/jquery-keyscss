@@ -18,7 +18,7 @@
  */
 (function($) {
     $.keyscss = {
-        version:    '0.0.4'
+        version:    '0.0.3'
     };
 
     /**
@@ -27,10 +27,10 @@
     $.fn.keysCss = function(config) {
         var markup      = jQuery(this).html();
         var classNames  = (typeof config != 'undefined' && 'classNames' in config) ? config.classNames.trim() : '';
-
-        while( markup.match( /\[[a-z\s|A-Z\s]+\]/g ) != null ) {
+        var pattern     = /\[[a-z\s0-9]+\]/gi;
+        while( markup.match( pattern ) != null ) {
             markup = markup.replace(
-                /\[[a-z\s|A-Z\s]+\]/, function(s){
+                pattern, function(s){
                     s = s.replace(/cursor up/gi ,   "&uarr;");
                     s = s.replace(/cursor down/gi , "&darr;");
                     s = s.replace(/cursor left/gi , "&larr;");
