@@ -1,6 +1,11 @@
 jquery-keyscss
 =================
 
+Screenshot
+----------
+![jquery-keyscss](https://github.com/kstenschke/jquery-keyscss/blob/master/screenshot.png?raw=true)
+
+
 What is it?
 -----------
 
