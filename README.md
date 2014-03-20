@@ -55,6 +55,8 @@ Author
 
 Version History
 ---------------
+* **0.0.4** *2014-03-20*
+    - Added conversion of "cursor up", "cursor right", etc. to arrow letter
 * **0.0.3** *2014-03-20*
     - Added configuration
 * **0.0.2** *2014-03-19*

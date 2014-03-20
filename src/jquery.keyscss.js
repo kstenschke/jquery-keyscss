@@ -1,8 +1,8 @@
 /*
  * jQuery keyscss Plugin
  *
- * Finds and replaces texts like [A], [CTRL] or [CURSOR UP] within the given elements
- * and applies a keyboard-like look, using keys.css (https://github.com/michaelhue/keyscss)
+ * Finds and replaces texts like [CTRL] or [A] or [CURSOR UP]
+ * within the given element and applies a keyboard-like look, using keys.css (https://github.com/michaelhue/keyscss)
  *
  * https://plugins.jquery.com/keyscss/
  * https://github.com/kstenschke/jquery-keyscss
@@ -18,7 +18,7 @@
  */
 (function($) {
     $.keyscss = {
-        version:    '0.0.3'
+        version:    '0.0.4'
     };
 
     /**
@@ -31,6 +31,11 @@
         while( markup.match( /\[[a-z\s|A-Z\s]+\]/g ) != null ) {
             markup = markup.replace(
                 /\[[a-z\s|A-Z\s]+\]/, function(s){
+                    s = s.replace(/cursor up/gi ,   "&uarr;");
+                    s = s.replace(/cursor down/gi , "&darr;");
+                    s = s.replace(/cursor left/gi , "&larr;");
+                    s = s.replace(/cursor right/gi ,"&rarr;");
+
                     return "<span class=\"kbd key " + classNames + "\">" + s.replace("[","").replace("]","") + "</span>";
                 }
             );
