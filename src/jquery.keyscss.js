@@ -26,17 +26,24 @@
      */
     $.fn.keysCss = function(config) {
         var markup      = jQuery(this).html();
-        var classNames  = (typeof config != 'undefined' && 'classNames' in config) ? config.classNames.trim() : '';
+
+        config = typeof config == 'undefined' ? {} : config;
+        config.classNames       = 'classNames' in config ? config.classNames.trim() : '';
+        config.replaceCursors   = 'replaceCursors' in config ? !!config.replaceCursors : true;
+        config.whiteArrows      = 'whiteArrows' in config ? !!config.whiteArrows : false;
+
         var pattern     = /\[[a-z\s0-9]+\]/gi;
         while( markup.match( pattern ) != null ) {
             markup = markup.replace(
                 pattern, function(s){
-                    s = s.replace(/cursor up/gi ,   "&uarr;");
-                    s = s.replace(/cursor down/gi , "&darr;");
-                    s = s.replace(/cursor left/gi , "&larr;");
-                    s = s.replace(/cursor right/gi ,"&rarr;");
+                    if( config.replaceCursors ) {
+                        s = s.replace(/cursor up/gi ,   config.whiteArrows ? "⇧" : "&uarr;");
+                        s = s.replace(/cursor down/gi , config.whiteArrows ? "⇩" : "&darr;");
+                        s = s.replace(/cursor left/gi , config.whiteArrows ? "⇦" : "&larr;");
+                        s = s.replace(/cursor right/gi ,config.whiteArrows ? "⇨" : "&rarr;");
+                    }
 
-                    return "<span class=\"kbd key " + classNames + "\">" + s.replace("[","").replace("]","") + "</span>";
+                    return "<span class=\"kbd key " + config.classNames + "\">" + s.replace("[","").replace("]","") + "</span>";
                 }
             );
         }
