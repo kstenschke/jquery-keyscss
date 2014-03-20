@@ -1,8 +1,8 @@
 /*
- * jQuery keyscss Plugin v0.0.1
+ * jQuery keyscss Plugin
  *
- * Finds and replaces texts like [CTRL] or [A] or [CURSOR UP]
- * within the given element and applies a keyboard-like look, using keys.css (https://github.com/michaelhue/keyscss)
+ * Finds and replaces texts like [A], [CTRL] or [CURSOR UP] within the given elements
+ * and applies a keyboard-like look, using keys.css (https://github.com/michaelhue/keyscss)
  *
  * https://plugins.jquery.com/keyscss/
  * https://github.com/kstenschke/jquery-keyscss
@@ -12,26 +12,26 @@
  * http://www.opensource.org/licenses/gpl-3.0.html
  *
  * Usage Example:
- *      jQuery('body').each(function(i, body) {
- *          jQuery(body).keysCss();
+ *      jQuery('td').each(function(i, container) {
+ *          jQuery(container).keysCss({'classNames': 'light'});
  *      });
  */
 (function($) {
     $.keyscss = {
-        version:    '0.0.2',
-        config:     {}
+        version:    '0.0.3'
     };
 
+    /**
+     * @param	{Object}	[config]
+     */
     $.fn.keysCss = function(config) {
-        var markup  = jQuery(this).html();
+        var markup      = jQuery(this).html();
+        var classNames  = (typeof config != 'undefined' && 'classNames' in config) ? config.classNames.trim() : '';
 
-        var patternMatch    = /\[[a-z\s|A-Z\s]+\]/g;
-        var patternReplace  = /\[[a-z\s|A-Z\s]+\]/;
-
-        while( markup.match( patternMatch ) != null && markup.match( patternMatch ).length > 0 ) {
+        while( markup.match( /\[[a-z\s|A-Z\s]+\]/g ) != null ) {
             markup = markup.replace(
-                patternReplace, function(s,m1,m2){
-                    return "<span class=\"kbd key\">"+s.replace("[","").replace("]","")+"</span>";
+                /\[[a-z\s|A-Z\s]+\]/, function(s){
+                    return "<span class=\"kbd key " + classNames + "\">" + s.replace("[","").replace("]","") + "</span>";
                 }
             );
         }
